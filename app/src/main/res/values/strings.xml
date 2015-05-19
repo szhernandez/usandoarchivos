@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Uso de archivos</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="mensaje1">Escribe contenido para el archivo</string>
+    <string name="guardar">Guardar</string>
+    <string name="Abrir"> Abrir </string>
+    <string name="externa">Memoria Externa</string>
+    <string name="interna">Memoria Interna</string>
+</resources>
