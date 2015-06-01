@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Using files</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="mensaje1">Write something</string>
+    <string name="guardar">Save</string>
+    <string name="Abrir"> Open </string>
+    <string name="externa">External Memory</string>
+    <string name="interna">Internal Memory</string>
+    <string name="almacenado_exito">The file is stored!!!</string>
+    <string name="almacenado_leido">The file is loaded correctly!!!</string>
+    <string name="noalmacenamiento">The external storage is unavailable</string>
+    <string name="noalmacenamientoexterno">The external storage is unavailable</string>
+</resources>

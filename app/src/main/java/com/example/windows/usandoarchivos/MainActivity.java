@@ -116,7 +116,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         ows.flush(); // Volca lo que hay en el buffer al archivo
                         ows.close(); // Cierra el archivo de texto
 
-                        Toast.makeText(getBaseContext(), "El archivo se ha almacenado!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), getString(R.string.almacenado_exito), Toast.LENGTH_SHORT).show();
 
                         txtTexto.setText("");
 
@@ -129,7 +129,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
 
             }else{
-                Toast.makeText(getBaseContext(), "El almacenamineto externo no se encuentra disponible", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),  getString(R.string.noalmacenamiento), Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             // TODO: handle exception
@@ -188,7 +188,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
                         isr.close();
 
-                        Toast.makeText(getBaseContext(), "El archivo ha sido cargado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),  getString(R.string.almacenado_exito), Toast.LENGTH_SHORT).show();
 
                     } catch (IOException e) {
                         // TODO: handle exception
@@ -196,7 +196,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     }
 
             }else{
-                Toast.makeText(getBaseContext(), "El almacenamineto externo no se encuentra disponible", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),  getString(R.string.noalmacenamientoexterno), Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             // TODO: handle exception
@@ -227,7 +227,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 e.printStackTrace();
             }
 
-            Toast.makeText(getBaseContext(),"El archivo se ha almacenado!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),getString(R.string.almacenado_exito), Toast.LENGTH_SHORT).show();
             txtTexto.setText("");
 
 
@@ -262,7 +262,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
                 isr.close();
 
-                Toast.makeText(getBaseContext(),"El archivo ha sido cargado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),getString(R.string.almacenado_leido), Toast.LENGTH_SHORT).show();
 
             } catch (IOException e) {
                 // TODO: handle exception
