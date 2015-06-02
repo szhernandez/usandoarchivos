@@ -26,18 +26,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+    //Enlazando XML con JAVA
         txtTexto = (EditText) findViewById(R.id.txtArchivo);
         btnGuardar = (Button)findViewById(R.id.btnGuardar);
         btnAbrir = (Button)findViewById(R.id.btnAbrir);
         btnGuardarint = (Button)findViewById(R.id.btnGuardarint);
         btnAbrirint = (Button)findViewById(R.id.btnAbrirint);
+    //Agregando listener a botones
         btnGuardar.setOnClickListener(this);
         btnAbrir.setOnClickListener(this);
         btnGuardarint.setOnClickListener(this);
         btnAbrirint.setOnClickListener(this);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,37 +52,36 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            //Clic en boton guardar, ejecutar el metodo para guardar en memoria externa
             case R.id.btnGuardar:
                 externaguardar();
                 break;
+            //Clic en boton abrir, ejecutar el metodo para leer el el archivo en memoria externa
             case R.id.btnAbrir:
                 externaabrir();
                 break;
+            //Clic en boton guardar interna, ejecutar el metodo para guardar en memoria interna
             case R.id.btnGuardarint:
                 internaguardar();
                 break;
+            //Clic en boton abrir, ejecutar el metodo para leer el el archivo en memoria interna
             case R.id.btnAbrirint:
                 internaabrir();
                 break;
-
         }
-
     }
     public void externaguardar(){
         File sdCard, directory, file = null;
-
         try {
             // validamos si se encuentra montada nuestra memoria externa
             if (Environment.getExternalStorageState().equals("mounted")) {
@@ -124,54 +123,35 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
-
-
-
             }else{
                 Toast.makeText(getBaseContext(),  getString(R.string.noalmacenamiento), Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             // TODO: handle exception
-
         }
     }
 
     public void externaabrir(){
         File sdCard, directory, file = null;
-
         try {
             // validamos si se encuentra montada nuestra memoria externa
             if (Environment.getExternalStorageState().equals("mounted")) {
-
                 // Obtenemos el directorio de la memoria externa
                 sdCard = Environment.getExternalStorageDirectory();
-
-
-
-
                     try {
-
                         //Obtenemos el direcorio donde se encuentra nuestro archivo a leer
                         directory = new File(sdCard.getAbsolutePath() + "/Arc. Mem. Ext");
-
                         //Creamos un objeto File de nuestro archivo a leer
                         file = new File(directory, "text.txt");
-
                         //Creamos un objeto de la clase FileInputStream
                         //el cual representa un stream del archivo que vamos a leer
                         FileInputStream fin = new FileInputStream(file);
-
                         //Creaos un objeto InputStreamReader que nos permitira
                         //leer el stream del archivo abierto
                         InputStreamReader isr = new InputStreamReader(fin);
-
                         char[] inputBuffer = new char[READ_BLOCK_SIZE];
                         String str = "";
-
-                        // Se lee el archivo de texto mientras no se llegue al
-                        // final
-                        // de él
+                        // Se lee el archivo de texto mientras no se llegue al final de él
                         int charRead;
                         while ((charRead = isr.read(inputBuffer)) > 0) {
                             // Se lee por bloques de 100 caracteres
@@ -179,35 +159,26 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                             // Y se va copiando a una cadena de texto
                             String strRead = String.copyValueOf(inputBuffer, 0, charRead);
                             str += strRead;
-
                             inputBuffer = new char[READ_BLOCK_SIZE];
                         }
-
                         // Se muestra el texto leido en la caje de texto
                         txtTexto.setText(str);
-
                         isr.close();
-
                         Toast.makeText(getBaseContext(),  getString(R.string.almacenado_exito), Toast.LENGTH_SHORT).show();
-
                     } catch (IOException e) {
                         // TODO: handle exception
                         e.printStackTrace();
                     }
-
             }else{
                 Toast.makeText(getBaseContext(),  getString(R.string.noalmacenamientoexterno), Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             // TODO: handle exception
-
-        }
+       }
     }
 
     public void internaguardar(){
-
             String str = txtTexto.getText().toString();
-
             //Clase que permite grabar texto en un archivo
             FileOutputStream fout=null;
             try {
@@ -215,36 +186,26 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 //La constante MODE_WORLD_READABLE indica que este arvhivo lo puede
                 //leer cualquier apllicacion
                 fout = openFileOutput("archivoTexto.txt", MODE_WORLD_READABLE);
-
                 //Convierte un stream de caracteres en un stream de bytes
                 OutputStreamWriter ows = new OutputStreamWriter(fout);
                 ows.write(str); //Escribe en el buffer la cadena de texto
                 ows.flush(); //Volca lo que hay en el buffer al archivo
                 ows.close(); //Cierra el archivo de texto
-
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
             Toast.makeText(getBaseContext(),getString(R.string.almacenado_exito), Toast.LENGTH_SHORT).show();
             txtTexto.setText("");
-
-
-
     }
 
     public void internaabrir(){
-
             try {
-
                 //Se lee el archivo de texto indicado
                 FileInputStream fin = openFileInput("archivoTexto.txt");
                 InputStreamReader isr = new InputStreamReader(fin);
-
                 char[] inputBuffer = new char[READ_BLOCK_SIZE	];
                 String str= "";
-
                 //Se lee el archivo de texto mientras no se llegue al final de él
                 int charRead;
                 while ((charRead=isr.read(inputBuffer))>0) {
@@ -253,22 +214,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     //Y se va copiando a una cadena de texto
                     String strRead = String.copyValueOf(inputBuffer, 0, charRead);
                     str += strRead;
-
                     inputBuffer = new char [READ_BLOCK_SIZE];
-                }
-
+               }
                 //Se muestra el texto leido en la caje de texto
                 txtTexto.setText(str);
-
                 isr.close();
-
                 Toast.makeText(getBaseContext(),getString(R.string.almacenado_leido), Toast.LENGTH_SHORT).show();
-
             } catch (IOException e) {
                 // TODO: handle exception
                 e.printStackTrace();
             }
-
-
     }
 }
